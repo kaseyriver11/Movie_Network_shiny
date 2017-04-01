@@ -12,7 +12,7 @@ library(networkD3)
 
 genreList <- movieNetwork::load_genres()$name
 
-#load("shiny/action2000.Rda")
-#load("shiny/comedy2000.Rda")
+load("action2000.Rda")
+load("comedy2000.Rda")
 
 
