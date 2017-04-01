@@ -42,6 +42,7 @@ dframe <- reactive({
 output$force <- renderForceNetwork({
   # Look at only the cast members
   df <- dframe()
+  selection <- input$cast_crew
 
   cast <- df[df$cast_crew == input$cast_crew,]
 
