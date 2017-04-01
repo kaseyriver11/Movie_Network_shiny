@@ -71,6 +71,15 @@ output$force <- renderForceNetwork({
       frame <- rbind(frame,c)
     }
   }
+
+
+  # Grab the Unique names of the actors
+  frame$source <- as.character(frame$source)
+  frame$target <- as.character(frame$target)
+  keep <- unique(c(frame$source, frame$target))
+  names <- unique(df$name[(df$name %in% keep)])
+  ID <- 0:(length(names)-1)
+
   # Convert to character
   frame$source <- as.character(frame$source)
   frame$target <- as.character(frame$target)
@@ -80,11 +89,6 @@ output$force <- renderForceNetwork({
     frame[i,1] <- a[1]
     frame[i,2] <- a[2]
   }
-
-  # Grab the Unique names of the actors
-  keep <- unique(c(frame$source, frame$target))
-  names <- unique(df$name[(df$name %in% keep)])
-  ID <- 0:(length(names)-1)
 
 
   convertDF <- data.frame(Names=names, ID = ID)
