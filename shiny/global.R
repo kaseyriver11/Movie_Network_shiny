@@ -3,7 +3,7 @@
 # Packages
 library(shiny)
 library(dplyr)
-library(tidyr)
+#library(tidyr)
 
 library(movieNetwork)
 library(networkD3)
