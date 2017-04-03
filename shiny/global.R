@@ -4,9 +4,6 @@
 library(shiny)
 library(dplyr)
 library(tidyr)
-library(igraph)
-library(Hmisc)
-
 library(movieNetwork)
 library(networkD3)
 
