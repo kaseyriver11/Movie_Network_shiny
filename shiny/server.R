@@ -1,6 +1,7 @@
 
 
 shinyServer(function(input, output, session){
+    Sys.setlocale(locale="C")
     
     # The list of Genres
     output$genres <- renderUI({
@@ -67,16 +68,16 @@ shinyServer(function(input, output, session){
                                  between_value, stringsAsFactors = F)
         #Create nodes labels containing the movies, connections, and betweenness
         node_labels <<- create_node_labels(links, id_df, between_df, network_df) %>% as.data.frame
-        popular_df <<- find_most_popular(links, id_df, between_df, network_df, 7) %>% as.data.frame
+        popular_df <<- find_most_popular(links, id_df, between_df, network_df, 20) %>% as.data.frame
         # Make the visual
         forceNetwork(Links = links, Nodes = node_labels, #height = 800, width = 1000,
                      Source = "source", Target = "target",
                      linkWidth = JS("function(d) { return Math.pow(d.value,1.2); }"), # width of links
                      linkDistance = JS("function(d){return d.value * 10}"), # tightness of movie clusters
                      Value = "value", NodeID = "name", zoom = TRUE,
-                     charge = -15, legend = TRUE,
+                     charge = -12, legend = TRUE,
                      colourScale = JS("d3.scaleOrdinal(d3.schemeCategory10);"),
-                     bound = FALSE,
+                     bound = TRUE,
                      Group = "group", opacity = 0.8, fontSize = 12)
     })
     
