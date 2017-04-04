@@ -29,20 +29,15 @@ shinyServer(function(input, output, session){
             network_df <- create_network_df("6df77c0d4d734469b206f490ea084869", genres(),
                                             dates()[1], dates()[2],
                                             movie_request_lim = movie_count())
-
-            # network_df <- create_network_df("6df77c0d4d734469b206f490ea084869", 'Comedy',
-            #                                 '2010-01-01', '2015-01-01',
-            #                                 movie_request_lim = 100)
-            # input <- list(cast_crew = 'cast')
-
        }
-        if(input$network == "option1"){
-            network_df <- action2000
-        }
-        if(input$network == "option2"){
-            network_df <- comedy2000
-        }
+        if(input$network == "option1"){network_df <- action2000}
+        if(input$network == "option2"){network_df <- comedy2000}
+        if(input$network == "option3"){network_df <- action1990}
+        if(input$network == "option4"){network_df <- comedy1990}
+        if(input$network == "option5"){network_df <- action1980}
+        if(input$network == "option6"){network_df <- comedy1980}
         
+
         network_df
         
     })
@@ -101,6 +96,14 @@ shinyServer(function(input, output, session){
         unique_names <- unique(c(pairwise_names$source_name, pairwise_names$target_name))
         selectInput("actorSelect", "Search Nodes (hover graph to update):", 
                     choices = c("...", as.list(unique_names)))
+    })
+    
+    output$movieTable <- renderTable({
+        network_df <- dframe()
+        network_df <- subset(network_df, network_df$name == input$actorSelect)
+        a <- data.frame(network_df$title)
+        a <- unique(a)
+        a
     })
     
     
