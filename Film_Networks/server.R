@@ -82,6 +82,10 @@ shinyServer(function(input, output, session){
     })
     
     output$table2 <- renderTable({
+        a <- input$network
+        b <- input$cast_crew
+        print(a)
+        print(b)
         df <- popular_df
         df
     })
@@ -103,6 +107,7 @@ shinyServer(function(input, output, session){
         network_df <- subset(network_df, network_df$name == input$actorSelect)
         a <- data.frame(network_df$title)
         a <- unique(a)
+        colnames(a) <- "Movie Titles"
         a
     })
     
