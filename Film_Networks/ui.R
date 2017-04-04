@@ -8,7 +8,7 @@ shinyUI(
       theme = "bootstrap.css",
 
 
-navbarPage("Film Network Analysis"),
+navbarPage("Film Network: An R Shiny Application"),
 # Panel 1
 sidebarLayout(
   sidebarPanel(width = 3,
