@@ -54,7 +54,10 @@ sidebarLayout(
 
                helpText("----------------------------------------"),
                uiOutput("actors"),
-               tableOutput("movieTable")
+               conditionalPanel(
+                   condition = "input.actorSelect != '...'",
+                   tableOutput("movieTable")
+               )
                 ),
 
             mainPanel(
